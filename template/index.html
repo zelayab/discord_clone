@@ -1,0 +1,11 @@
+|   {% extends 'bases.html' %}
+
+
+|   {% block content %}
+
+|   {% endblock %}
+
+container 3 columnas, h1 h2 y ul li 
+
+% for server in server_list %}
+                <li><a href="/servers/{{ server.id }}/channels">{{ server.name }}</a></li>
