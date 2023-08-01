@@ -1,0 +1,47 @@
+{% extends 'bases.html' %}
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+    {% if not logged_in %}
+    <div class="container">
+        <div class="login">
+            <h1>Iniciar sesión</h1>
+            <form class="login-form" action="/" method="POST">
+                <input placeholder="Username" type="text" name="username" id="username" required>
+                <input  placeholder="Password" type="password" name="password" id="password" required>
+                <button class="btn btn-primary btn-block btn-large"
+                    value="Iniciar sesión" type="submit"
+                >
+                    Iniciar sesión
+                </button>
+            </form>
+            <a class="register-link" href="/register">Regístrate aquí</a>
+        </div>
+        <div>
+            <img class="login-img" src="{{ url_for('static', filename='img/login.jpg') }}" alt="Login">
+        </div>
+    </div>
+        {% if suggest_register %}
+            <div class="alert alert-info" role="alert" id="alert-message">
+                Usuario no encontrado. ¿No tienes una cuenta? <a href="/register">Regístrate aquí</a>.
+            </div>
+            <script>
+                // Código JavaScript para ocultar el mensaje de alerta después de 5 segundos
+                setTimeout(function() {
+                    var alertMessage = document.getElementById('alert-message');
+                    if (alertMessage) {
+                        alertMessage.style.display = 'none';
+                    }
+                }, 5000); // Ocultar después de 5 segundos (5000 milisegundos)
+            </script>
+        {% endif %}
+    {% endif %}
+{% endblock %}
