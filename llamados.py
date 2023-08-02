@@ -13,7 +13,7 @@ def create_user (username,password,email):
     conn.close()    
     print(cur.rowcount, "Usuario creado")
 
-
+# funcionando
 def create_server(name,description):
     query = "INSERT INTO servers (name,description) VALUES (%s,%s)"
     conn = bd.conectar()
@@ -34,6 +34,15 @@ def create_channel(name,server_id):
     conn.close()
     print(cur.rowcount, "Canal creado")  
 
+def create_message(content,user_id,channel_id):
+    query = "INSERT INTO messages (content,user_id,channel_id) VALUES (%s,%s,%s)"
+    conn = bd.conectar()
+    cur = conn.cursor()
+    val = (content,user_id,channel_id)
+    cur.execute(query,val)
+    conn.commit()
+    conn.close()
+    print(cur.rowcount, "Mensaje creado")
 
 
-create_server("Server1","Descripcion1")
+create_message("hola","1","1")
