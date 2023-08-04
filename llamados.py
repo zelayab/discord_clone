@@ -57,3 +57,44 @@ def get_user(username):
     return cur.fetchone()
 
 create_message("basura japishh!!",1,2)
+
+
+def get_server(name):
+    query = "SELECT * FROM servers WHERE name = %s"
+    conn = bd.conectar()
+    cur = conn.cursor()
+    val = (name,)
+    cur.execute(query,val)
+    conn.commit()
+    conn.close()
+    return cur.fetchone()
+
+def get_channel(name):
+    query = "SELECT * FROM channels WHERE name = %s"
+    conn = bd.conectar()
+    cur = conn.cursor()
+    val = (name,)
+    cur.execute(query,val)
+    conn.commit()
+    conn.close()
+    return cur.fetchone()
+
+def get_message(content):
+    query = "SELECT * FROM messages WHERE content = %s"
+    conn = bd.conectar()
+    cur = conn.cursor()
+    val = (content,)
+    cur.execute(query,val)
+    conn.commit()
+    conn.close()
+    return cur.fetchone()
+
+def get_user_by_id(id):
+    query = "SELECT * FROM users WHERE id = %s"
+    conn = bd.conectar()
+    cur = conn.cursor()
+    val = (id,)
+    cur.execute(query,val)
+    conn.commit()
+    conn.close()
+    return cur.fetchone()
