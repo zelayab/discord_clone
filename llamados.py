@@ -1,5 +1,6 @@
 import mysql.connector 
 from mysql.connector import errors
+import models
 import datos
 import bd
 
@@ -59,42 +60,21 @@ def get_user(username):
 create_message("basura japishh!!",1,2)
 
 
-def get_server(name):
-    query = "SELECT * FROM servers WHERE name = %s"
+def get_servers_from_db():
     conn = bd.conectar()
-    cur = conn.cursor()
-    val = (name,)
-    cur.execute(query,val)
-    conn.commit()
-    conn.close()
-    return cur.fetchone()
+    cursor = conn.cursor()
+    query = "SELECT id, name, owner_id, description FROM servers"
+    cursor.execute(query)
+    resultados = cursor.fetchall()
+    servidores = []
+    for resultado in resultados:
+        id = resultado[0]
+        name = resultado[1]
+        owner_id = resultado[2]
+        description = resultado[3]
+        servidor = models.Server(name, owner_id, description)
+        servidor.id = id
+        servidores.append(servidor)
+    cursor.close()
+    return servidores
 
-def get_channel(name):
-    query = "SELECT * FROM channels WHERE name = %s"
-    conn = bd.conectar()
-    cur = conn.cursor()
-    val = (name,)
-    cur.execute(query,val)
-    conn.commit()
-    conn.close()
-    return cur.fetchone()
-
-def get_message(content):
-    query = "SELECT * FROM messages WHERE content = %s"
-    conn = bd.conectar()
-    cur = conn.cursor()
-    val = (content,)
-    cur.execute(query,val)
-    conn.commit()
-    conn.close()
-    return cur.fetchone()
-
-def get_user_by_id(id):
-    query = "SELECT * FROM users WHERE id = %s"
-    conn = bd.conectar()
-    cur = conn.cursor()
-    val = (id,)
-    cur.execute(query,val)
-    conn.commit()
-    conn.close()
-    return cur.fetchone()
