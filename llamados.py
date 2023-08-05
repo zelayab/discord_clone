@@ -56,4 +56,6 @@ def get_user(username):
     conn.close()
     return cur.fetchone()
 
+
+# funcion que debe eliminar un dato
 create_message("basura japishh!!",1,2)
