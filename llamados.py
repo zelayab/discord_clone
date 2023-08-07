@@ -1,5 +1,6 @@
 import mysql.connector 
 from mysql.connector import errors
+import models
 import datos
 import bd
 
@@ -57,5 +58,29 @@ def get_user(username):
     return cur.fetchone()
 
 
+
 # funcion que debe eliminar un dato
 create_message("basura japishh!!",1,2)
+
+create_message("basura japishh!!",1,2)
+
+
+def get_servers_from_db():
+    conn = bd.conectar()
+    cursor = conn.cursor()
+    query = "SELECT id, name, owner_id, description FROM servers"
+    cursor.execute(query)
+    resultados = cursor.fetchall()
+    servidores = []
+    for resultado in resultados:
+        id = resultado[0]
+        name = resultado[1]
+        owner_id = resultado[2]
+        description = resultado[3]
+        servidor = models.Server(name, owner_id, description)
+        servidor.id = id
+        servidores.append(servidor)
+    cursor.close()
+    return servidores
+
+
