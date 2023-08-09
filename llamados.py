@@ -37,11 +37,11 @@ def create_channel(name,server_id):
     conn.close()
     print(cur.rowcount, "Canal creado")  
 # funcionando
-def create_message(content,user_id,channel_id):
-    query = "INSERT INTO messages (content,user_id,channel_id) VALUES (%s,%s,%s)"
+def create_message(content,user_id,channel_id,author):
+    query = "INSERT INTO messages (content,user_id,channel_id) VALUES (%s,%s,%s,%s)"
     conn = bd.conectar()
     cur = conn.cursor()
-    val = (content,user_id,channel_id)
+    val = (content,user_id,channel_id,author)
     cur.execute(query,val)
     conn.commit()
     conn.close()
@@ -105,7 +105,8 @@ def get_messages_from_db():
         content = resultado[1]
         user_id = resultado[2]
         channel_id = resultado[3]
-        mensaje = models.Message(content, user_id, channel_id)
+        author = resultado[4]
+        mensaje = models.Message(content, user_id, channel_id,author)
         mensaje.id = id
         mensajes.append(mensaje)
     cursor.close()
