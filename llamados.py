@@ -57,14 +57,6 @@ def get_user(username):
     conn.close()
     return cur.fetchone()
 
-
-
-# funcion que debe eliminar un dato
-create_message("basura japishh!!",1,2)
-
-create_message("basura japishh!!",1,2)
-
-
 def get_servers_from_db():
     conn = bd.conectar()
     cursor = conn.cursor()
@@ -83,4 +75,40 @@ def get_servers_from_db():
     cursor.close()
     return servidores
 
+
+def get_channels_from_db():
+    conn = bd.conectar()
+    cursor = conn.cursor()
+    query = "SELECT id, name, server_id FROM channels"
+    cursor.execute(query)
+    resultados = cursor.fetchall()
+    canales = []
+    for resultado in resultados:
+        id = resultado[0]
+        name = resultado[1]
+        server_id = resultado[2]
+        canal = models.Channel(name, server_id)
+        canal.id = id
+        canales.append(canal)
+    cursor.close()
+    return canales
+
+def get_messages_from_db():
+    conn = bd.conectar()
+    cursor = conn.cursor()
+    query = "SELECT * FROM messages"
+    cursor.execute(query)
+    resultados = cursor.fetchall()
+    mensajes = []
+    for resultado in resultados:
+        id = resultado[0]
+        content = resultado[1]
+        user_id = resultado[2]
+        channel_id = resultado[3]
+        mensaje = models.Message(content, user_id, channel_id)
+        mensaje.id = id
+        mensajes.append(mensaje)
+    cursor.close()
+    return mensajes
+# mostrar los get_servers_from_db y get_channels_from_db
 
