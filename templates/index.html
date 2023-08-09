@@ -1,0 +1,47 @@
+|   {% extends 'bases.html' %}
+
+
+|   {% block content %}
+ <div class = "container"> 
+
+    <div class="servitors">
+        <h1>Servitors</h1>   
+            <ul>
+                <li>
+                     {% for server in server_list %}
+                        <li><a href="/servers/{{ server_id }}/channels">{{ server.name }}</a></li>
+                        {% endfor %}
+                </li>
+            </ul>
+        </div>
+
+        <div class = "channels">
+            <h2>Channels</h2>
+            <ul>
+                <li>
+                    {% for channel in channel_list %}
+                        <li><a href="/servers/{{sever_id}}/channels/{{channel_id}}">{{ channel.name }}</a></li>
+                        {% endfor %}
+                </li>
+            </ul>
+             </div>
+
+    </div class = "messages">
+    <h3>Messages</h3>
+    <ul>
+        <li>
+            {% for message in message_list %}
+                        <li>
+                            {{message.content}}
+                        </li>
+                        {% endfor %}
+        </li>
+    </ul>
+    </div>
+
+ </div>
+
+
+
+|   {% endblock %}
+
