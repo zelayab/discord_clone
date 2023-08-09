@@ -1,3 +1,4 @@
+
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 /* display */
@@ -102,8 +103,6 @@
 /* btn */
 .btn {
   display: inline-block;
-  *display: inline;
-  *zoom: 1;
   padding: 4px 10px 4px;
   margin: 10px 0;
   font-size: 13px;
@@ -140,7 +139,7 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
     0 1px 2px rgba(0, 0, 0, 0.05);
   cursor: pointer;
-  *margin-left: 0.3em;
+ 
 }
 .btn:hover,
 .btn:active,
@@ -488,6 +487,131 @@ input#file-upload-button{
 /* Create Server */
 
 
+
+
+
+
+
+
+/* Radio Buttons */
+fieldset {
+  @extend.roundedborder;
+  margin-bottom:2em;
+  padding:.5em .5em;
+}
+
+input[type='radio'] {
+  appearance:none;
+  border: solid .1em lighten($bg,7%);;
+  @include border-radius(50%);
+  background-color:darken($bg, 5%);
+  color:#f0f;
+  cursor:pointer;
+  height:2.5em;
+  width: 2.5em;
+  margin-top:0;
+  vertical-align:text-top;
+}
+
+input[type="radio"]:checked:after {
+  background-color:lighten($bg,15%);
+  border-radius:50%;
+  content:"\00a0";
+  display:block;
+  position:relative;
+  height:1.5em;
+  width:1.5em;
+  margin:.4em;
+}
+
+/* Dropdown Box */
+.styled-select {
+  display:inline-block;
+  @extend .roundedborder;
+  background-color: lighten($bg, 5%);
+  color: darken($bg, 10%);
+  cursor:pointer;
+  font-size:1.1em;
+  margin-bottom:1.5em;
+  padding:.25em 0;
+  position:relative;
+  width:15em;
+}
+
+.styled-select:before {
+  font-family: "FontAwesome"; 
+  border: solid 1px darken($bg,10%);
+  border-width: 0 0 0 1px;
+  content:'\f103';
+  color:darken($bg,15%);
+  font-size:1.25em;
+  padding-left:.25em;
+  position:absolute;
+  pointer-events:none;
+  right:.35em;
+}
+
+select {
+    appearance:none;
+    background-color:transparent;
+    border:none;
+    cursor:pointer;
+    color: darken($bg, 10%);
+    display:inline-block;
+    font-size:1em;
+    margin:0; padding:0 2em 0 1em;
+    width:100%;
+}
+
+/* Text Area */
+textarea {
+  @extend .roundedborder;
+  background-color: darken($bg, 5%);
+  color: lighten($text, 10%);
+  font-size:1em;
+  height:10em;
+  margin:.5em 0 1em;
+  padding:1em;
+  width:100%;
+}
+
+/* Checkbox */
+input[type='checkbox'] {
+  appearance:none;
+  @extend .roundedborder;
+  background-color:darken($bg, 5%);
+  cursor:pointer;
+  font-size:1em;
+  padding: .25em;
+  height:1em; width:1em;
+  vertical-align:text-top;
+}
+
+input[type='checkbox']:checked:after {
+  border:solid $text;
+  border-width:0 4px 4px 0;
+  content:"\00a0";
+  display:block;
+  height:1em; width:.5em;
+  margin-top:-.9em;
+  position:relative;
+  transform:rotate(45deg); 
+}
+
+
+/* Submit Button */
+input[type='submit'] {
+  @extend .roundedborder;
+  border: 3px solid darken($bg, 10%);
+  background-color:lighten($bg, 5%);
+  cursor:pointer;
+  color:lighten($bg,50%);
+  float:right;
+  font-size:1.5em;
+  padding: .25em 1em;
+  @include text-shadow(.1em .1em .2em #333);
+}
+input[type='submit']:hover {background-color:darken($bg,5%);}
 
 
 
