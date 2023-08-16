@@ -87,7 +87,7 @@ def get_channels_from_db():
         id = resultado[0]
         name = resultado[1]
         server_id = resultado[2]
-        canal = models.Channel(name, server_id)
+        canal = models.Channel(name, server_id, type)
         canal.id = id
         canales.append(canal)
     cursor.close()
